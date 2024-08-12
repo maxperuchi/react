@@ -1,0 +1,14 @@
+.CardTable {
+    margin: 20px;
+    padding: 10px;
+    background-color: beige;
+    border-radius: 15px;
+    width: auto;
+    max-width: 1000px;
+    overflow-y: scroll;
+    height: 150px;
+}
+
+.CardContainer {
+    display: flex;
+}
