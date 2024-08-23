@@ -9,7 +9,7 @@ function CombSort() {
   const [ gapState, setGapState] = useState(0)
   const [ combSorted, setCombSorted] = useState([])
   const [ combSortOperations, setCombSortOperations] = useState()
-  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setCombSorted, setCombSortOperations, 14)
+  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setCombSorted, setCombSortOperations)
 
   const getGap = (n) => {
     const gap = Math.floor(n / factor)

@@ -5,22 +5,24 @@ import CardTable from '../../components/CardTable/CardTable';
 import useTable from '../../hooks/useTable';
 
 function InsertionSort() {
-  const [ bubbleSorted, setBubbleSorted] = useState([])
-  const [ bubbleSortOperations, setBubbleSortOperations] = useState()
-  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setBubbleSorted, setBubbleSortOperations)
+  const [ insertionSorted, setInsertionSorted] = useState([])
+  const [ insertionSortOperations, setInsertionSortOperations] = useState()
+  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setInsertionSorted, setInsertionSortOperations)
 
-  const bubbleSort = (update, arr) => {
-    let hasChanged = true;
-    while (hasChanged) {
-      hasChanged = false;
-      for (let j = 0; j < arr.length; j++) {
-        if (arr[j] > arr[j+1]) {
-          const aux = arr[j]
-          arr[j] = arr[j+1]
-          arr[j+1] = aux
-          hasChanged = true;
+  const insertionSort = (update, arr) => {
+    for (let j = 0; j < arr.length; j++) {
+      for (let i = j - 1; i >= 0; i--) {
+
+        if (arr[i] > arr[j]) {
+
+          const aux = arr[i]
+          arr[i] = arr[j]
+          arr[j] = aux
+          
+          j--
+
+          update(arr)
         }
-        update(arr)
       }
     }
   }
@@ -33,12 +35,12 @@ function InsertionSort() {
       const state = Array.from(result)
       const operationsState = operations
       setTimeout(() => {
-        setBubbleSorted(state)
-        setBubbleSortOperations(operationsState)
-      }, operations * 150)
+        setInsertionSorted(state)
+        setInsertionSortOperations(operationsState)
+      }, operations * 250)
     }
 
-    bubbleSort(update, Array.from(cards))
+    insertionSort(update, Array.from(cards))
   }
 
   return (
@@ -48,10 +50,10 @@ function InsertionSort() {
           <button onClick={() => generateRandom()}>Generate Random</button>
           <button onClick={() => generateSorted()}>Generate Sorted</button>
           <button onClick={() => generateSortedDesc()}>Generate Sorted Descending</button>
-          <button onClick={() => run()}>Bubble Sort</button>
+          <button onClick={() => run()}>InsertionSort</button>
         </div>
         <CardTable tableName='Unsorted Cards' main cards={cards}/>
-        <CardTable tableName='Bubble Sort - O(n²)' cards={bubbleSorted} operations={bubbleSortOperations}/>
+        <CardTable tableName='InsertionSort - O(n²)' cards={insertionSorted} operations={insertionSortOperations}/>
       </div>
     </div>
   );

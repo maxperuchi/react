@@ -7,7 +7,7 @@ import useTable from '../../hooks/useTable';
 function BubbleSort() {
   const [ bubbleSorted, setBubbleSorted] = useState([])
   const [ bubbleSortOperations, setBubbleSortOperations] = useState()
-  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setBubbleSorted, setBubbleSortOperations, 14)
+  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setBubbleSorted, setBubbleSortOperations)
 
   const bubbleSort = (update, arr) => {
     let hasChanged = true

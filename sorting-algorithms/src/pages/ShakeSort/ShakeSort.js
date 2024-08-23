@@ -8,7 +8,7 @@ function ShakeSort() {
   const [ backingState, setBackingState] = useState(false)
   const [ shakeSorted, setShakeSorted] = useState([])
   const [ shakeSortOperations, setShakeSortOperations] = useState()
-  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setShakeSorted, setShakeSortOperations, 14)
+  const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setShakeSorted, setShakeSortOperations)
 
   const shakeSort = (update, arr) => {
     let hasChanged = true
