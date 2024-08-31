@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function useTable(setSorted, setOperations) {
-  const [n, setN] = useState(7)
+  const [n, setN] = useState(14)
   const [ cards, setCards ] = useState([])
 
   const generateRandom = () => {
@@ -21,10 +21,10 @@ function useTable(setSorted, setOperations) {
   }
 
   const generateSorted = () => {
-    const newCards = [3,4,2,1,9,7,8]
-    // for (let i = 1; i <= n; i++) {
-    //   newCards.push(i)
-    // }
+    const newCards = []
+    for (let i = 1; i <= n; i++) {
+      newCards.push(i)
+    }
     setCards(newCards)
     setSorted(newCards)
     setOperations()

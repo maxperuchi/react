@@ -9,7 +9,7 @@ function HeapSort() {
   const [ heapSortOperations, setHeapSortOperations] = useState()
   const [ cards, generateRandom, generateSorted, generateSortedDesc ] = useTable(setHeapSorted, setHeapSortOperations)
 
-  const heapfy = (i, arr) => {
+  const heapfy = (p, l, arr, update) => {
     //      3
     //   4      2
     // 1   9  7   8
@@ -40,47 +40,53 @@ function HeapSort() {
     //  0123456
     // [9481372]
 
+    const lindex = (p * 2) + 1
+    const rindex = (p * 2) + 2
 
-    const lindex = (i * 2) + 1
-    const rindex = (i * 2) + 2
-
-
-    // if there's no left child, 
-    // then there is nothing to do
-    const left = arr.at(lindex)
-    if (!left) {
-      return
+    if (p > l || lindex > l || rindex > l) {
+      return;
     }
 
-    heapfy(lindex, arr)
+    update(arr)
 
     const right = arr.at(rindex)
     if (right) {
-      heapfy(rindex, arr)
+      heapfy(rindex, l, arr, update)
+    }
+    
+    const left = arr.at(lindex)
+    if (left) {
+      heapfy(lindex, l, arr, update)
     }
 
-    const parent = arr.at(i)
     const greatestChild = Math.max(arr.at(lindex), arr.at(rindex))
+    const parent = arr.at(p)
 
     if (greatestChild > parent) {
-      const aux = parent
-      arr[i] = greatestChild
+      arr[p] = greatestChild
 
       if (greatestChild === arr[lindex]) {
-        arr[lindex] = aux
-        heapfy(lindex, arr)
+        arr[lindex] = parent
+        heapfy(lindex, l, arr, update)
       } else {
-        arr[rindex] = aux
-        heapfy(rindex, arr)
+        arr[rindex] = parent
+        heapfy(rindex, l, arr, update)
       }
     }
   }
 
   const heapSort = (update, arr) => {
-    for (let i = Math.floor(arr.length / 2); i >= 0; i --) {
-      heapfy(i, arr)
-      update(arr)
+    for (let i = arr.length - 1; i > 0; i--) {
+      heapfy(0, i, arr, update)
+      
+      if (arr[0] > arr[i]) {
+        const aux = arr[i]
+        arr[i] = arr[0]
+        arr[0] = aux
+      }
     }
+
+    update(arr)
   }
 
   const run = () => {
