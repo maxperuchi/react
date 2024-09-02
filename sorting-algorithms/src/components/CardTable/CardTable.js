@@ -6,7 +6,7 @@ function CardTable({tableName, cards, operations, main, additional}) {
     <div className="CardTable">
         <div>{tableName || ''}</div>
         {operations && <div>Operations: {operations}</div>}
-        {additional && <div>{additional}</div>}
+        {additional && <div style={{height: 'auto'}}>{additional}</div>}
         {main && cards.length > 0 && <div>n = {cards.length}</div>}
         <div className="CardContainer">
             {cards && cards.map((c, i) => 
