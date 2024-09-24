@@ -2,3 +2,6 @@
 sorting-algorithms/.DS_Store
 sorting-algorithms/build/*
 sorting-algorithms/node_modules/*
+graph-algorithms/.DS_Store
+graph-algorithms/build/*
+graph-algorithms/node_modules/*
